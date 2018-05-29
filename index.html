@@ -10,7 +10,8 @@
     <a href="https://www.google.ru">Go away!</a>
 
     <script>
-        window.onbeforeunload = function (evt) {
+
+        function showNotifyMessage(evt) {
             var message = "Document is not saved. You will lost the changes if you leave the page.";
             if (typeof evt == "undefined") {
                 evt = window.event;
@@ -18,8 +19,16 @@
             if (evt) {
                 evt.returnValue = message;
             }
+
+            if (evt.preventDefault) {
+                evt.preventDefault(); 
+            }
+            
             return message;
         }
+
+        window.addEventListener('beforeunload', showNotifyMessage);
+        window.addEventListener('pagehide', showNotifyMessage);
     </script>
 </body>
 </html>
