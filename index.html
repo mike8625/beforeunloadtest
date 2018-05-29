@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Before Unload test</title>
+</head>
+<body>
+    <h1>Before Unload test</h1>
+    <a href="https://www.google.ru">Go away!</a>
+
+    <script>
+        window.onbeforeunload = function (evt) {
+            var message = "Document is not saved. You will lost the changes if you leave the page.";
+            if (typeof evt == "undefined") {
+                evt = window.event;
+            }
+            if (evt) {
+                evt.returnValue = message;
+            }
+            return message;
+        }
+    </script>
+</body>
+</html>
